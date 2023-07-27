@@ -23,7 +23,7 @@ def get_kit_name(folder_path):
         return data.get('name')
 
 def generate_json_data():
-    folders = [folder for folder in os.listdir() if os.path.isdir(folder) and not folder.startswith('.')]
+    folders = sorted([folder for folder in os.listdir() if os.path.isdir(folder) and not folder.startswith('.')], key=int)
 
     all_folders_data = []
     for folder_name in folders:
@@ -32,6 +32,7 @@ def generate_json_data():
 
         folder_data = {
             'name': kit_name,
+            'folder': folder_name,
             'images': images,
             'sounds': sounds
         }
